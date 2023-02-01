@@ -13,7 +13,7 @@ class XmlImporter(Importer):
         file_data = ET.parse(path).getroot().findall("record")
         for report in file_data:
             report_dict = dict()
-            for reportInfos in report.getchildren():
+            for reportInfos in list(report):
                 report_dict[reportInfos.tag] = reportInfos.text
             reports.append(report_dict)
         return reports
