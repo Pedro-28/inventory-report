@@ -1,9 +1,14 @@
 from xml.etree import ElementTree as ET
 
 
-class XmlImporter:
+from inventory_report.importer.importer import Importer
+
+
+class XmlImporter(Importer):
     @staticmethod
     def import_data(path: str):
+        if not path.endswith(".xml"):
+            raise ValueError("Arquivo inválido")
         reports = list()
         file_data = ET.parse(path).getroot().findall("record")
         for report in file_data:

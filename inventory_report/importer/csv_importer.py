@@ -1,11 +1,14 @@
 import csv
 
+from inventory_report.importer.importer import Importer
 
-class CsvImporter:
+
+class CsvImporter(Importer):
     @staticmethod
     def import_data(path: str):
-        reports = list()
+        if not path.endswith(".csv"):
+            raise ValueError("Arquivo inválido")
+
         with open(path) as file:
             file_data = csv.DictReader(file)
-            reports = [data for data in file_data]
-        return reports
+            return [data for data in file_data]

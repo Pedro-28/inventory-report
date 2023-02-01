@@ -22,5 +22,4 @@ class Inventory:
             reports = JsonImporter.import_data(path)
         if report_type == "simples":
             return SimpleReport.generate(reports)
-        # elif report_type == "completo":
         return CompleteReport.generate(reports)
